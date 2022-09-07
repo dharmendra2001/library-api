@@ -1,12 +1,12 @@
 class IssuedController < ApplicationController
   def index 
     if current_user.role == 'admin'
-      @book = IssuedBook.all
+      @books = IssuedBook.all
       no_book
     else
-      @book = current_user.issuedBooks
+      @books = current_user.issuedBooks.all
+      #render json: @books
       no_book
-      render json: @books
     end
   end
 
@@ -48,10 +48,10 @@ class IssuedController < ApplicationController
   end
 
   def no_book
-    if @book.empty?
+    if @books.empty?
       render json: {message: "no issued Books"}
     else
-      render json: @book
+      render json: @books
     end
   end
 end
