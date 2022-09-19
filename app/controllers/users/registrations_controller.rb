@@ -5,15 +5,15 @@ class Users::RegistrationsController < Devise::RegistrationsController
   respond_to :json
   include RackSessionFix
 
-  # def create
-  #   authorize! :admin , current_user
-  #   super
-  # end
+  def create
+    authorize! :admin , current_user
+    super
+  end
   private
 
   def respond_with(resource, _opts = {})
     register_success && return if resource.persisted?
-
+    
     register_failed
   end
 

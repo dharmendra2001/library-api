@@ -9,5 +9,5 @@ Rails.application.routes.draw do
   resources  :books
   get 'issued/index', to: 'issued#index'
   put 'issued/:id', to: 'issued#issue'
-  delete 'issueds', to: 'issued#return'
+  delete 'return', to: 'issued#return'
 end
